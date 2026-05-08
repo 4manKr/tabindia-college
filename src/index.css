@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-image:
+      radial-gradient(ellipse 80% 50% at top right, rgba(242,100,48,.15), transparent 55%),
+      radial-gradient(ellipse 60% 60% at bottom left, rgba(18,61,99,.12), transparent 55%),
+      linear-gradient(180deg, #fffbf6 0%, #f6f5f0 50%, #edf3fa 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  }
+}
+
+@layer components {
+  .headline {
+    font-family: 'Bahnschrift', 'Segoe UI', Arial, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  .btn-orange {
+    @apply bg-brand-orange-gradient text-white font-bold rounded-2xl px-8 py-4 shadow-lg
+           transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl
+           active:translate-y-0 active:shadow-md cursor-pointer;
+    background-image: linear-gradient(135deg, #ff9155 0%, #f26430 60%, #e0481a 100%);
+  }
+
+  .input-field {
+    @apply w-full rounded-2xl border border-[#123d63]/15 bg-white/80 px-4 py-3
+           text-[#0a2844] placeholder-slate-400 text-sm font-medium
+           focus:outline-none focus:ring-2 focus:ring-[#f26430]/40 focus:border-[#f26430]/60
+           transition-all duration-150;
+  }
+
+  .field-label {
+    @apply block text-[0.7rem] font-bold uppercase tracking-[.2em] text-slate-500 mb-1.5;
+  }
+
+  .card {
+    @apply rounded-3xl bg-white/70 backdrop-blur-sm shadow-sm;
+    border: 1px solid rgba(18, 61, 99, 0.08);
+  }
+
+  .glass-panel {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 253, 248, 0.85);
+  }
+
+  .fade-up {
+    animation: fadeUp 0.6s ease both;
+  }
+  .fade-up-1 { animation: fadeUp 0.6s 0.1s ease both; }
+  .fade-up-2 { animation: fadeUp 0.6s 0.2s ease both; }
+  .fade-up-3 { animation: fadeUp 0.6s 0.3s ease both; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-pop {
+  animation: modalPop 0.25s ease both;
+}
