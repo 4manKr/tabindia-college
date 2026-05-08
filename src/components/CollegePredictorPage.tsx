@@ -1,5 +1,33 @@
 import { useState, useRef } from "react";
 
+const CENTRAL_CATEGORIES = [
+  "General / UR",
+  "OBC-NCL",
+  "SC",
+  "ST",
+  "EWS",
+  "PWD / PH",
+];
+
+/* floating background words for hero */
+const BG_WORDS: {
+  text: string; fontSize: string; top: string; left: string;
+  anim: string; dur: string; delay: string; op: number;
+}[] = [
+  { text: "MBBS",          fontSize: "7rem",  top: "8%",  left: "2%",   anim: "floatA", dur: "7s",  delay: "0s",    op: 0.07 },
+  { text: "BDS",           fontSize: "4rem",  top: "60%", left: "1%",   anim: "floatC", dur: "9s",  delay: "1.2s",  op: 0.05 },
+  { text: "NEET",          fontSize: "5rem",  top: "15%", left: "72%",  anim: "floatB", dur: "8s",  delay: "0.5s",  op: 0.06 },
+  { text: "MCC",           fontSize: "3.5rem",top: "70%", left: "78%",  anim: "floatD", dur: "6s",  delay: "2s",    op: 0.055 },
+  { text: "AIQ",           fontSize: "4.5rem",top: "40%", left: "88%",  anim: "floatA", dur: "10s", delay: "0.8s",  op: 0.05 },
+  { text: "BAMS",          fontSize: "3rem",  top: "78%", left: "35%",  anim: "floatB", dur: "7.5s",delay: "1.8s",  op: 0.045 },
+  { text: "Medical",       fontSize: "3.8rem",top: "5%",  left: "38%",  anim: "floatC", dur: "11s", delay: "0.3s",  op: 0.04 },
+  { text: "BHMS",          fontSize: "2.8rem",top: "50%", left: "55%",  anim: "floatD", dur: "8.5s",delay: "2.5s",  op: 0.04 },
+  { text: "Doctor",        fontSize: "5.5rem",top: "30%", left: "-2%",  anim: "floatB", dur: "9.5s",delay: "1s",    op: 0.05 },
+  { text: "Counselling",   fontSize: "2.5rem",top: "85%", left: "58%",  anim: "floatA", dur: "12s", delay: "3s",    op: 0.04 },
+  { text: "State Quota",   fontSize: "2.2rem",top: "22%", left: "52%",  anim: "floatC", dur: "10s", delay: "1.5s",  op: 0.035 },
+  { text: "MBBS",          fontSize: "4rem",  top: "88%", left: "10%",  anim: "floatD", dur: "8s",  delay: "0.7s",  op: 0.045 },
+];
+
 /* ─── helpers ─── */
 const WEBHOOK = import.meta.env.VITE_SHEETS_URL as string | undefined;
 
@@ -200,10 +228,38 @@ export default function CollegePredictorPage() {
       <Header />
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden bg-brand-gradient px-4 py-16 sm:py-20 text-white">
-        {/* decorative circles */}
-        <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-white/5" />
-        <div className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-white/5" />
+      <section className="relative overflow-hidden px-4 py-16 sm:py-20 text-white"
+        style={{ background: "linear-gradient(155deg, #061e35 0%, #0a2844 35%, #123d63 70%, #0d3558 100%)" }}>
+
+        {/* ── dynamic coloured blobs ── */}
+        <div className="hero-blob" style={{ width:"520px", height:"520px", top:"-140px", right:"-100px",
+          background:"radial-gradient(circle, rgba(18,90,138,0.55) 0%, rgba(10,40,68,0) 70%)",
+          animationDelay:"0s", animationDuration:"8s" }} />
+        <div className="hero-blob" style={{ width:"400px", height:"400px", bottom:"-80px", left:"-60px",
+          background:"radial-gradient(circle, rgba(26,60,100,0.5) 0%, rgba(6,30,53,0) 70%)",
+          animationDelay:"3s", animationDuration:"10s" }} />
+        <div className="hero-blob" style={{ width:"300px", height:"300px", top:"30%", left:"40%",
+          background:"radial-gradient(circle, rgba(242,100,48,0.08) 0%, transparent 70%)",
+          animationDelay:"1.5s", animationDuration:"7s" }} />
+
+        {/* ── floating MBBS background words ── */}
+        {BG_WORDS.map((w, i) => (
+          <span
+            key={i}
+            className="hero-bg-word"
+            style={{
+              fontSize: w.fontSize,
+              top: w.top,
+              left: w.left,
+              "--op": w.op,
+              opacity: w.op,
+              animation: `${w.anim} ${w.dur} ${w.delay} ease-in-out infinite`,
+            } as React.CSSProperties}
+          >
+            {w.text}
+          </span>
+        ))}
+
 
         <div className="relative mx-auto max-w-3xl text-center fade-up">
           <p className="text-xs font-black uppercase tracking-[.35em] text-[#ffb06d] mb-3">
@@ -234,8 +290,8 @@ export default function CollegePredictorPage() {
         {/* stats strip */}
         <div className="relative mx-auto mt-12 grid max-w-2xl grid-cols-3 gap-4 sm:gap-8 fade-up-1">
           {[
-            { v: "706+", l: "Medical Colleges" },
-            { v: "1.1L+", l: "MBBS Seats in India" },
+            { v: "2,800+", l: "Medical Colleges" },
+            { v: "AIQ+State", l: "Quota Coverage" },
             { v: "Free", l: "Expert Counselling" },
           ].map((s) => (
             <div key={s.l} className="text-center">
@@ -359,15 +415,17 @@ export default function CollegePredictorPage() {
               </Field>
               <Field
                 label="AIQ / Central Quota Category *"
-                hint="e.g. General, OBC-NCL, SC, ST, EWS, PWD"
+                hint="Your category for All India Quota (MCC counselling)"
                 error={errors.centralCategory}
               >
-                <input
+                <select
                   className="input-field"
-                  placeholder="Type your category"
                   value={form.centralCategory}
                   onChange={(e) => set("centralCategory", e.target.value)}
-                />
+                >
+                  <option value="">Select category</option>
+                  {CENTRAL_CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+                </select>
               </Field>
             </div>
 

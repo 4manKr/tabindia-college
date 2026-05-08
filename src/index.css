@@ -72,3 +72,44 @@
 .modal-pop {
   animation: modalPop 0.25s ease both;
 }
+
+/* ── Dynamic MBBS hero background words ── */
+@keyframes floatA {
+  0%,100% { transform: translateY(0px)   rotate(-6deg);  opacity: var(--op); }
+  50%     { transform: translateY(-22px) rotate(-6deg);  opacity: calc(var(--op) * 0.5); }
+}
+@keyframes floatB {
+  0%,100% { transform: translateY(0px)   rotate(4deg);  opacity: var(--op); }
+  50%     { transform: translateY(-16px) rotate(4deg);  opacity: calc(var(--op) * 0.45); }
+}
+@keyframes floatC {
+  0%,100% { transform: translateY(0px)   rotate(-2deg);  opacity: var(--op); }
+  50%     { transform: translateY(-28px) rotate(-2deg);  opacity: calc(var(--op) * 0.4); }
+}
+@keyframes floatD {
+  0%,100% { transform: translateY(0px)   rotate(8deg);  opacity: var(--op); }
+  50%     { transform: translateY(-12px) rotate(8deg);  opacity: calc(var(--op) * 0.55); }
+}
+@keyframes pulseBg {
+  0%,100% { opacity: 0.18; transform: scale(1);   }
+  50%     { opacity: 0.28; transform: scale(1.06); }
+}
+
+.hero-bg-word {
+  position: absolute;
+  font-family: 'Bahnschrift', 'Segoe UI', Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  animation: pulseBg 6s ease-in-out infinite;
+}
