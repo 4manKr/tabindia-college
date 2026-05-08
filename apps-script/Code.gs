@@ -34,8 +34,12 @@ var COUNSEL_HEADERS = [
   "Category", "Preferred Course", "NEET Score", "Query / Message"
 ];
 
+var COLLEGE_LEAD_HEADERS = [
+  "Timestamp", "Name", "Phone"
+];
+
 var COLLEGE_HEADERS = [
-  "Timestamp", "Name", "Phone", "Estimated Rank", "Preferred Course",
+  "Timestamp", "Name", "Phone", "NEET Score", "Preferred Course",
   "Domicile State", "Education State",
   "State Quota Category", "AIQ / Central Category",
   "Budget", "Preferred States"
@@ -48,7 +52,14 @@ function doPost(e) {
     var data = JSON.parse(raw);
     var ss   = SpreadsheetApp.openById(SPREADSHEET_ID);
 
-    if (data.type === "college-predictor") {
+    if (data.type === "college-lead") {
+      writeRow(ss, "College Leads", COLLEGE_LEAD_HEADERS, [
+        new Date().toLocaleString("en-IN"),
+        data.name  || "",
+        data.phone || ""
+      ]);
+
+    } else if (data.type === "college-predictor") {
       writeRow(ss, "College Predictor", COLLEGE_HEADERS, [
         new Date().toLocaleString("en-IN"),
         data.name             || "",
