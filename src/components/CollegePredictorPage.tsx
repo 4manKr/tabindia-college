@@ -13,24 +13,6 @@ const STATES = [
   "Delhi","Jammu & Kashmir","Ladakh","Lakshadweep","Puducherry",
 ];
 
-const STATE_CATEGORIES = [
-  "General / UR",
-  "OBC",
-  "OBC-NCL",
-  "SC",
-  "ST",
-  "EWS",
-  "PWD / PH",
-];
-
-const CENTRAL_CATEGORIES = [
-  "General / UR",
-  "OBC-NCL",
-  "SC",
-  "ST",
-  "EWS",
-  "PWD / PH",
-];
 
 const BUDGETS = [
   "Under ₹5 Lakh / Year",
@@ -125,7 +107,7 @@ export default function CollegePredictorPage() {
     if (!form.name.trim())           e.name           = "Name is required.";
     if (!/^[6-9]\d{9}$/.test(form.phone)) e.phone    = "Enter a valid 10-digit mobile number.";
     const rank = Number(form.estimatedRank);
-    if (!form.estimatedRank || isNaN(rank) || rank < 1) e.estimatedRank = "Enter a valid rank (≥ 1).";
+    if (!form.estimatedRank || isNaN(rank) || rank < 1 || rank > 720) e.estimatedRank = "Enter a valid NEET score between 1 and 720.";
     if (!form.domicileState)         e.domicileState  = "Select your home / domicile state.";
     if (!form.educationState)        e.educationState = "Select your education (12th) state.";
     if (!form.domicileCategory)      e.domicileCategory = "Select your state quota category.";
@@ -252,8 +234,8 @@ export default function CollegePredictorPage() {
         {/* stats strip */}
         <div className="relative mx-auto mt-12 grid max-w-2xl grid-cols-3 gap-4 sm:gap-8 fade-up-1">
           {[
-            { v: "2.4L+", l: "Students Guided" },
-            { v: "600+", l: "Colleges Covered" },
+            { v: "706+", l: "Medical Colleges" },
+            { v: "1.1L+", l: "MBBS Seats in India" },
             { v: "Free", l: "Expert Counselling" },
           ].map((s) => (
             <div key={s.l} className="text-center">
@@ -302,14 +284,15 @@ export default function CollegePredictorPage() {
             </div>
 
             {/* ── Rank ── */}
-            <SectionTitle>NEET Rank</SectionTitle>
+            <SectionTitle>NEET Score</SectionTitle>
             <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Estimated NEET Rank *" error={errors.estimatedRank}>
+              <Field label="Estimated NEET Score * (1 – 720)" error={errors.estimatedRank}>
                 <input
                   className="input-field"
                   type="number"
                   min={1}
-                  placeholder="e.g. 15000"
+                  max={720}
+                  placeholder="e.g. 550"
                   value={form.estimatedRank}
                   onChange={(e) => set("estimatedRank", e.target.value)}
                 />
@@ -364,31 +347,27 @@ export default function CollegePredictorPage() {
             <div className="grid gap-5 sm:grid-cols-2">
               <Field
                 label="State Quota Category *"
-                hint="Your category for state counselling (domicile-based)"
+                hint="e.g. General, OBC, SC, ST, EWS, PWD"
                 error={errors.domicileCategory}
               >
-                <select
+                <input
                   className="input-field"
+                  placeholder="Type your category"
                   value={form.domicileCategory}
                   onChange={(e) => set("domicileCategory", e.target.value)}
-                >
-                  <option value="">Select category</option>
-                  {STATE_CATEGORIES.map((c) => <option key={c}>{c}</option>)}
-                </select>
+                />
               </Field>
               <Field
                 label="AIQ / Central Quota Category *"
-                hint="Your category for All India Quota (MCC counselling)"
+                hint="e.g. General, OBC-NCL, SC, ST, EWS, PWD"
                 error={errors.centralCategory}
               >
-                <select
+                <input
                   className="input-field"
+                  placeholder="Type your category"
                   value={form.centralCategory}
                   onChange={(e) => set("centralCategory", e.target.value)}
-                >
-                  <option value="">Select category</option>
-                  {CENTRAL_CATEGORIES.map((c) => <option key={c}>{c}</option>)}
-                </select>
+                />
               </Field>
             </div>
 
