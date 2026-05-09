@@ -352,7 +352,7 @@ export default function CollegePredictorPage() {
       </section>
 
       {/* ══ Form (Step 2 only) ══ */}
-      <section ref={formRef} className="mx-auto w-full max-w-2xl px-4 py-6">
+      <section ref={formRef} className="mx-auto w-full max-w-2xl px-4 py-6 scroll-mt-20">
 
         {/* ── STEP 2 ── */}
         {step === 2 && (
