@@ -7,7 +7,7 @@ const WEBHOOK = import.meta.env.VITE_SHEETS_URL as string | undefined;
 const CENTRAL_CATEGORIES = ["General / UR", "OBC-NCL", "SC", "ST", "EWS", "PWD / PH"];
 
 /* ─── courses ─── */
-const COURSES = ["MBBS", "BDS", "BAMS", "BHMS", "BUMS", "BPT", "B.Sc Nursing", "Other"];
+const COURSES = ["MBBS", "BDS", "BAMS", "BHMS", "BUMS", "BVSc", "B.Sc Nursing", "Other"];
 
 /* ─── budget options ─── */
 const BUDGETS = [
@@ -57,7 +57,7 @@ const REGIONS: { label: string; emoji: string; states: string[] }[] = [
   },
 ];
 
-const ALL_STATES = REGIONS.flatMap((r) => r.states);
+const ALL_STATES = [...REGIONS.flatMap((r) => r.states)].sort((a, b) => a.localeCompare(b));
 
 /* ─── floating hero background words ─── */
 const BG_WORDS: {
@@ -285,7 +285,7 @@ export default function CollegePredictorPage() {
           <h1 className="headline text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
             Find Your Best-Fit
             <br className="hidden sm:block" />
-            <span className="text-[#ffb06d]"> Medical College</span>
+            <span className="text-[#ffb06d]"> College</span>
           </h1>
           <p className="mt-4 text-base leading-7 text-slate-300 sm:text-lg max-w-xl mx-auto">
             Enter your NEET score, domicile &amp; preferences — our experts will
@@ -304,7 +304,7 @@ export default function CollegePredictorPage() {
 
         <div className="relative mx-auto mt-12 grid max-w-2xl grid-cols-3 gap-4 sm:gap-8 fade-up-1">
           {[
-            { v: "2,800+", l: "Medical Colleges" },
+            { v: "2,800+", l: "Colleges" },
             { v: "AIQ+State", l: "Quota Coverage" },
             { v: "Free", l: "Expert Counselling" },
           ].map((s) => (
@@ -408,8 +408,8 @@ export default function CollegePredictorPage() {
                   </Field>
                 </div>
 
-                {/* Domicile & Education */}
-                <SectionTitle>Domicile &amp; Education State</SectionTitle>
+                {/* Domicile, Category & Education */}
+                <SectionTitle>Domicile, Category &amp; Education</SectionTitle>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <Field label="Home / Domicile State *" hint="State of permanent residence" error={s2Err.domicileState}>
                     <select className="input-field" value={s2.domicileState}
@@ -418,18 +418,6 @@ export default function CollegePredictorPage() {
                       {ALL_STATES.map((s) => <option key={s}>{s}</option>)}
                     </select>
                   </Field>
-                  <Field label="Education State *" hint="State where you appeared for Class 12" error={s2Err.educationState}>
-                    <select className="input-field" value={s2.educationState}
-                      onChange={(e) => setF2("educationState", e.target.value)}>
-                      <option value="">Select state</option>
-                      {ALL_STATES.map((s) => <option key={s}>{s}</option>)}
-                    </select>
-                  </Field>
-                </div>
-
-                {/* Category */}
-                <SectionTitle>Category</SectionTitle>
-                <div className="grid gap-3 sm:grid-cols-2">
                   <Field label="State Quota Category *" hint="e.g. General, OBC, SC, ST, EWS, PWD" error={s2Err.domicileCategory}>
                     <input className="input-field" placeholder="Type your category"
                       value={s2.domicileCategory} onChange={(e) => setF2("domicileCategory", e.target.value)} />
@@ -439,6 +427,13 @@ export default function CollegePredictorPage() {
                       onChange={(e) => setF2("centralCategory", e.target.value)}>
                       <option value="">Select category</option>
                       {CENTRAL_CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+                    </select>
+                  </Field>
+                  <Field label="Education State *" hint="State where you appeared for Class 12" error={s2Err.educationState}>
+                    <select className="input-field" value={s2.educationState}
+                      onChange={(e) => setF2("educationState", e.target.value)}>
+                      <option value="">Select state</option>
+                      {ALL_STATES.map((s) => <option key={s}>{s}</option>)}
                     </select>
                   </Field>
                 </div>
@@ -514,7 +509,7 @@ export default function CollegePredictorPage() {
           </h2>
           <div className="grid gap-6 sm:grid-cols-3 fade-up-1">
             {[
-              { icon: "🎯", title: "Accurate College Matching",  body: "Based on real NEET 2025 data covering 2,800+ medical colleges across state & central quotas." },
+              { icon: "🎯", title: "Accurate College Matching",  body: "Based on real NEET 2025 data covering 2,800+ colleges across state & central quotas." },
               { icon: "🧑‍🏫", title: "Expert Counsellors",       body: "Our team guides you through every round of counselling — state & AIQ — so you never miss a seat." },
               { icon: "🆓", title: "100% Free Session",          body: "No hidden charges. Book a free one-on-one session and plan your MBBS admission strategy." },
             ].map((f) => (
