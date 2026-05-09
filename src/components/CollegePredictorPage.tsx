@@ -64,18 +64,18 @@ const BG_WORDS: {
   text: string; fontSize: string; top: string; left: string;
   anim: string; dur: string; delay: string; op: number;
 }[] = [
-  { text: "MBBS",        fontSize: "7rem",  top: "8%",  left: "2%",  anim: "floatA", dur: "7s",   delay: "0s",   op: 0.07  },
-  { text: "BDS",         fontSize: "4rem",  top: "60%", left: "1%",  anim: "floatC", dur: "9s",   delay: "1.2s", op: 0.05  },
-  { text: "NEET",        fontSize: "5rem",  top: "15%", left: "72%", anim: "floatB", dur: "8s",   delay: "0.5s", op: 0.06  },
-  { text: "MCC",         fontSize: "3.5rem",top: "70%", left: "78%", anim: "floatD", dur: "6s",   delay: "2s",   op: 0.055 },
-  { text: "AIQ",         fontSize: "4.5rem",top: "40%", left: "88%", anim: "floatA", dur: "10s",  delay: "0.8s", op: 0.05  },
-  { text: "BAMS",        fontSize: "3rem",  top: "78%", left: "35%", anim: "floatB", dur: "7.5s", delay: "1.8s", op: 0.045 },
-  { text: "Medical",     fontSize: "3.8rem",top: "5%",  left: "38%", anim: "floatC", dur: "11s",  delay: "0.3s", op: 0.04  },
-  { text: "BHMS",        fontSize: "2.8rem",top: "50%", left: "55%", anim: "floatD", dur: "8.5s", delay: "2.5s", op: 0.04  },
-  { text: "Doctor",      fontSize: "5.5rem",top: "30%", left: "-2%", anim: "floatB", dur: "9.5s", delay: "1s",   op: 0.05  },
-  { text: "Counselling", fontSize: "2.5rem",top: "85%", left: "58%", anim: "floatA", dur: "12s",  delay: "3s",   op: 0.04  },
-  { text: "State Quota", fontSize: "2.2rem",top: "22%", left: "52%", anim: "floatC", dur: "10s",  delay: "1.5s", op: 0.035 },
-  { text: "MBBS",        fontSize: "4rem",  top: "88%", left: "10%", anim: "floatD", dur: "8s",   delay: "0.7s", op: 0.045 },
+  { text: "MBBS",        fontSize: "7rem",  top: "8%",  left: "2%",  anim: "floatA", dur: "7s",   delay: "0s",   op: 0.16  },
+  { text: "BDS",         fontSize: "4rem",  top: "60%", left: "1%",  anim: "floatC", dur: "9s",   delay: "1.2s", op: 0.13  },
+  { text: "NEET",        fontSize: "5rem",  top: "15%", left: "72%", anim: "floatB", dur: "8s",   delay: "0.5s", op: 0.14  },
+  { text: "MCC",         fontSize: "3.5rem",top: "70%", left: "78%", anim: "floatD", dur: "6s",   delay: "2s",   op: 0.13  },
+  { text: "AIQ",         fontSize: "4.5rem",top: "40%", left: "88%", anim: "floatA", dur: "10s",  delay: "0.8s", op: 0.12  },
+  { text: "BAMS",        fontSize: "3rem",  top: "78%", left: "35%", anim: "floatB", dur: "7.5s", delay: "1.8s", op: 0.11  },
+  { text: "Medical",     fontSize: "3.8rem",top: "5%",  left: "38%", anim: "floatC", dur: "11s",  delay: "0.3s", op: 0.10  },
+  { text: "BHMS",        fontSize: "2.8rem",top: "50%", left: "55%", anim: "floatD", dur: "8.5s", delay: "2.5s", op: 0.10  },
+  { text: "Doctor",      fontSize: "5.5rem",top: "30%", left: "-2%", anim: "floatB", dur: "9.5s", delay: "1s",   op: 0.12  },
+  { text: "Counselling", fontSize: "2.5rem",top: "85%", left: "58%", anim: "floatA", dur: "12s",  delay: "3s",   op: 0.10  },
+  { text: "State Quota", fontSize: "2.2rem",top: "22%", left: "52%", anim: "floatC", dur: "10s",  delay: "1.5s", op: 0.09  },
+  { text: "MBBS",        fontSize: "4rem",  top: "88%", left: "10%", anim: "floatD", dur: "8s",   delay: "0.7s", op: 0.11  },
 ];
 
 /* ─── types ─── */
@@ -306,7 +306,7 @@ export default function CollegePredictorPage() {
           {[
             { v: "2,800+", l: "Colleges" },
             { v: "AIQ+State", l: "Quota Coverage" },
-            { v: "Free", l: "Expert Counselling" },
+            { v: "Expert", l: "Counselling Support" },
           ].map((s) => (
             <div key={s.l} className="text-center">
               <p className="headline text-2xl font-black text-[#ffb06d] sm:text-3xl">{s.v}</p>
@@ -511,7 +511,7 @@ export default function CollegePredictorPage() {
             {[
               { icon: "🎯", title: "Accurate College Matching",  body: "Based on real NEET 2025 data covering 2,800+ colleges across state & central quotas." },
               { icon: "🧑‍🏫", title: "Expert Counsellors",       body: "Our team guides you through every round of counselling — state & AIQ — so you never miss a seat." },
-              { icon: "🆓", title: "100% Free Session",          body: "No hidden charges. Book a free one-on-one session and plan your MBBS admission strategy." },
+              { icon: "🤝", title: "Personalised Guidance",        body: "Get a dedicated one-on-one session with our experts and build a clear MBBS admission strategy." },
             ].map((f) => (
               <div key={f.title} className="rounded-3xl border border-white/10 p-6" style={{ background:"rgba(255,255,255,0.08)" }}>
                 <p className="text-3xl mb-3">{f.icon}</p>
@@ -549,7 +549,7 @@ function Footer() {
     <footer className="border-t border-[#123d63]/10 bg-[#0a2844] px-4 py-8 text-white">
       <div className="mx-auto max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="h-12 w-12 rounded-2xl overflow-hidden bg-white/10 flex items-center justify-center">
+          <div className="h-12 w-12 rounded-2xl overflow-hidden bg-white flex items-center justify-center">
             <img src="/brand/logo.png" alt="TAB India" className="h-10 w-auto object-contain" />
           </div>
           <div>
