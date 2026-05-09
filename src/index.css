@@ -6,6 +6,10 @@
   html {
     scroll-behavior: smooth;
   }
+  /* Prevent iOS Safari from auto-zooming on input focus */
+  input, select, textarea {
+    font-size: 16px;
+  }
   body {
     background-image:
       radial-gradient(ellipse 80% 50% at top right, rgba(242,100,48,.15), transparent 55%),
@@ -32,9 +36,10 @@
 
   .input-field {
     @apply w-full rounded-2xl border border-[#123d63]/15 bg-white/80 px-4 py-3
-           text-[#0a2844] placeholder-slate-400 text-sm font-medium
+           text-[#0a2844] placeholder-slate-400 font-medium
            focus:outline-none focus:ring-2 focus:ring-[#f26430]/40 focus:border-[#f26430]/60
            transition-all duration-150;
+    font-size: 16px; /* prevent iOS Safari auto-zoom */
   }
 
   .field-label {
