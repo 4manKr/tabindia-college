@@ -486,7 +486,7 @@ export default function CollegePredictorPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 fade-up-1">
             {[
               { icon: "🎯", title: "Accurate College Matching",  body: "Based on real NEET 2025 data covering 2,800+ colleges across state & central quotas in India." },
-              { icon: "🌍", title: "International Admissions",   body: "We assist with MBBS admissions in 40+ countries — Russia, Kazakhstan, Philippines, Georgia & more." },
+              { icon: "🌍", title: "International Admissions",   body: "We assist with MBBS admissions abroad — Russia, Kazakhstan, Uzbekistan, Georgia & more." },
               { icon: "🧑‍🏫", title: "Expert Counsellors",       body: "Our team guides you through every round of counselling — state, AIQ & abroad — so you never miss a seat." },
               { icon: "🤝", title: "Personalised Guidance",      body: "Get a dedicated one-on-one session with our experts and build a clear admission strategy — India or abroad." },
             ].map((f) => (
