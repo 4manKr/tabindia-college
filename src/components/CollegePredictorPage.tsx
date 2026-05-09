@@ -215,10 +215,6 @@ export default function CollegePredictorPage() {
     setStep("done");
   }
 
-  function scrollToForm() {
-    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
   /* ── success screen ── */
   if (step === "done") {
     return (
@@ -291,15 +287,50 @@ export default function CollegePredictorPage() {
             Enter your NEET score, domicile &amp; preferences — our experts will
             match you with the right colleges across state &amp; central quotas.
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button onClick={scrollToForm} className="btn-orange w-full sm:w-auto">
-              Predict My College &rarr;
-            </button>
-            <a href="tel:+919311483555"
-              className="flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white transition-colors">
-              <PhoneIcon /> +91 93114 83555
-            </a>
-          </div>
+
+          {/* ── Inline Step-1 form in hero ── */}
+          {step === 1 && (
+            <form onSubmit={handleStep1} noValidate className="mt-8 w-full max-w-xl mx-auto fade-up-1">
+              <div className="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-sm p-5 space-y-3">
+                <div className="grid gap-3 sm:grid-cols-2 text-left">
+                  <div>
+                    <label className="block text-[0.68rem] font-bold uppercase tracking-[.2em] text-white/60 mb-1.5">Full Name *</label>
+                    <input
+                      className="w-full rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-white placeholder-white/35 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#f26430]/70 focus:border-[#f26430]/70 transition-all"
+                      placeholder="Your full name"
+                      value={s1.name} onChange={(e) => setF1("name", e.target.value)} />
+                    {s1Err.name && <p className="mt-1 text-xs text-red-400">{s1Err.name}</p>}
+                  </div>
+                  <div>
+                    <label className="block text-[0.68rem] font-bold uppercase tracking-[.2em] text-white/60 mb-1.5">Mobile Number *</label>
+                    <input
+                      className="w-full rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-white placeholder-white/35 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#f26430]/70 focus:border-[#f26430]/70 transition-all"
+                      type="tel" placeholder="10-digit mobile number"
+                      value={s1.phone} maxLength={10}
+                      onChange={(e) => setF1("phone", e.target.value.replace(/\D/g, ""))} />
+                    {s1Err.phone && <p className="mt-1 text-xs text-red-400">{s1Err.phone}</p>}
+                  </div>
+                </div>
+                <button type="submit" disabled={loading}
+                  className="btn-orange w-full disabled:opacity-60 disabled:cursor-not-allowed">
+                  {loading ? "Please wait…" : "Get My College List →"}
+                </button>
+                <p className="text-center text-[0.65rem] text-white/40">
+                  By continuing, you agree to be contacted by TAB India counsellors.
+                </p>
+              </div>
+            </form>
+          )}
+
+          {/* ── After step 1: phone link ── */}
+          {step === 2 && (
+            <div className="mt-8 flex items-center justify-center">
+              <a href="tel:+919311483555"
+                className="flex items-center gap-2 text-sm font-semibold text-white/70 hover:text-white transition-colors">
+                <PhoneIcon /> +91 93114 83555
+              </a>
+            </div>
+          )}
         </div>
 
         <div className="relative mx-auto mt-12 grid max-w-2xl grid-cols-3 gap-4 sm:gap-8 fade-up-1">
@@ -316,67 +347,8 @@ export default function CollegePredictorPage() {
         </div>
       </section>
 
-      {/* ══ Form ══ */}
+      {/* ══ Form (Step 2 only) ══ */}
       <section ref={formRef} className="mx-auto w-full max-w-2xl px-4 py-6">
-
-        {/* step indicator */}
-        {(() => {
-          const cur = step as number; // narrowed to 1|2 after "done" early-return
-          return (
-            <div className="flex items-center justify-center gap-3 mb-5 fade-up">
-              {[1, 2].map((n) => {
-                const active = cur === n;
-                const done   = cur > n;
-                return (
-                  <div key={n} className="flex items-center gap-3">
-                    <div className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-black transition-all ${
-                      active ? "bg-[#f26430] text-white shadow-md" :
-                      done   ? "bg-emerald-500 text-white" :
-                               "bg-slate-200 text-slate-400"}`}>
-                      {done ? "✓" : n}
-                    </div>
-                    <span className={`text-xs font-semibold ${active ? "text-[#0a2844]" : "text-slate-400"}`}>
-                      {n === 1 ? "Your Info" : "Preferences"}
-                    </span>
-                    {n === 1 && <div className="h-px w-8 bg-slate-200" />}
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })()}
-
-        {/* ── STEP 1 ── */}
-        {step === 1 && (
-          <>
-            <div className="mb-4 text-center fade-up">
-              <h2 className="headline text-2xl font-black text-[#0a2844] sm:text-3xl">Let's Get Started</h2>
-              <p className="mt-1 text-sm text-slate-500">Enter your name &amp; number to begin.</p>
-            </div>
-            <form onSubmit={handleStep1} noValidate>
-              <div className="card p-4 sm:p-6 space-y-4 fade-up-1">
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <Field label="Full Name *" error={s1Err.name}>
-                    <input className="input-field" placeholder="Your full name"
-                      value={s1.name} onChange={(e) => setF1("name", e.target.value)} />
-                  </Field>
-                  <Field label="Mobile Number *" error={s1Err.phone}>
-                    <input className="input-field" type="tel" placeholder="10-digit mobile number"
-                      value={s1.phone} maxLength={10}
-                      onChange={(e) => setF1("phone", e.target.value.replace(/\D/g, ""))} />
-                  </Field>
-                </div>
-                <button type="submit" disabled={loading}
-                  className="btn-orange w-full disabled:opacity-60 disabled:cursor-not-allowed">
-                  {loading ? "Please wait…" : "Continue →"}
-                </button>
-                <p className="text-center text-xs text-slate-400">
-                  By continuing, you agree to be contacted by TAB India counsellors.
-                </p>
-              </div>
-            </form>
-          </>
-        )}
 
         {/* ── STEP 2 ── */}
         {step === 2 && (
