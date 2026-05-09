@@ -340,7 +340,7 @@ export default function CollegePredictorPage() {
           {[
             { v: "2,800+", l: "Colleges in India" },
             { v: "AIQ+State", l: "Quota Coverage" },
-            { v: "40+", l: "Countries Abroad" },
+            { v: "Global", l: "Admissions Abroad" },
             { v: "Expert", l: "Counselling Support" },
           ].map((s) => (
             <div key={s.l} className="text-center">
