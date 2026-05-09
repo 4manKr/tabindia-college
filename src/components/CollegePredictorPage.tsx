@@ -251,7 +251,7 @@ export default function CollegePredictorPage() {
       <Header />
 
       {/* ══ Hero ══ */}
-      <section className="relative overflow-hidden px-4 py-16 sm:py-20 text-white"
+      <section className="relative overflow-hidden px-4 py-12 sm:py-16 lg:pt-8 lg:pb-14 text-white"
         style={{ background: "linear-gradient(155deg, #061e35 0%, #0a2844 35%, #123d63 70%, #0d3558 100%)" }}>
 
         {/* blobs */}
@@ -290,21 +290,24 @@ export default function CollegePredictorPage() {
 
           {/* ── Inline Step-1 form in hero ── */}
           {step === 1 && (
-            <form onSubmit={handleStep1} noValidate className="mt-8 w-full max-w-xl mx-auto fade-up-1">
-              <div className="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-sm p-5 space-y-3">
+            <form onSubmit={handleStep1} noValidate className="mt-7 w-full max-w-xl mx-auto fade-up-1">
+              <div className="rounded-2xl border border-white/30 backdrop-blur-md p-5 space-y-3"
+                style={{ background: "rgba(255,255,255,0.13)" }}>
                 <div className="grid gap-3 sm:grid-cols-2 text-left">
                   <div>
-                    <label className="block text-[0.68rem] font-bold uppercase tracking-[.2em] text-white/60 mb-1.5">Full Name *</label>
+                    <label className="block text-[0.68rem] font-bold uppercase tracking-[.2em] text-white/80 mb-1.5">Full Name *</label>
                     <input
-                      className="w-full rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-white placeholder-white/35 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#f26430]/70 focus:border-[#f26430]/70 transition-all"
+                      className="w-full rounded-xl border border-white/30 px-4 py-2.5 text-white placeholder-white/45 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#f26430]/80 focus:border-[#f26430]/80 transition-all"
+                      style={{ background: "rgba(255,255,255,0.12)" }}
                       placeholder="Your full name"
                       value={s1.name} onChange={(e) => setF1("name", e.target.value)} />
                     {s1Err.name && <p className="mt-1 text-xs text-red-400">{s1Err.name}</p>}
                   </div>
                   <div>
-                    <label className="block text-[0.68rem] font-bold uppercase tracking-[.2em] text-white/60 mb-1.5">Mobile Number *</label>
+                    <label className="block text-[0.68rem] font-bold uppercase tracking-[.2em] text-white/80 mb-1.5">Mobile Number *</label>
                     <input
-                      className="w-full rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-white placeholder-white/35 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#f26430]/70 focus:border-[#f26430]/70 transition-all"
+                      className="w-full rounded-xl border border-white/30 px-4 py-2.5 text-white placeholder-white/45 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#f26430]/80 focus:border-[#f26430]/80 transition-all"
+                      style={{ background: "rgba(255,255,255,0.12)" }}
                       type="tel" placeholder="10-digit mobile number"
                       value={s1.phone} maxLength={10}
                       onChange={(e) => setF1("phone", e.target.value.replace(/\D/g, ""))} />
@@ -315,7 +318,7 @@ export default function CollegePredictorPage() {
                   className="btn-orange w-full disabled:opacity-60 disabled:cursor-not-allowed">
                   {loading ? "Please wait…" : "Get My College List →"}
                 </button>
-                <p className="text-center text-[0.65rem] text-white/40">
+                <p className="text-center text-[0.65rem] text-white/50">
                   By continuing, you agree to be contacted by TAB India counsellors.
                 </p>
               </div>
