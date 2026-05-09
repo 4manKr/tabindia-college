@@ -317,13 +317,13 @@ export default function CollegePredictorPage() {
       </section>
 
       {/* ══ Form ══ */}
-      <section ref={formRef} className="mx-auto w-full max-w-3xl px-4 py-14">
+      <section ref={formRef} className="mx-auto w-full max-w-2xl px-4 py-6">
 
         {/* step indicator */}
         {(() => {
           const cur = step as number; // narrowed to 1|2 after "done" early-return
           return (
-            <div className="flex items-center justify-center gap-3 mb-8 fade-up">
+            <div className="flex items-center justify-center gap-3 mb-5 fade-up">
               {[1, 2].map((n) => {
                 const active = cur === n;
                 const done   = cur > n;
@@ -349,13 +349,13 @@ export default function CollegePredictorPage() {
         {/* ── STEP 1 ── */}
         {step === 1 && (
           <>
-            <div className="mb-6 text-center fade-up">
-              <h2 className="headline text-3xl font-black text-[#0a2844] sm:text-4xl">Let's Get Started</h2>
-              <p className="mt-2 text-sm text-slate-500">Enter your name &amp; number to begin.</p>
+            <div className="mb-4 text-center fade-up">
+              <h2 className="headline text-2xl font-black text-[#0a2844] sm:text-3xl">Let's Get Started</h2>
+              <p className="mt-1 text-sm text-slate-500">Enter your name &amp; number to begin.</p>
             </div>
             <form onSubmit={handleStep1} noValidate>
-              <div className="card p-6 sm:p-8 space-y-5 fade-up-1">
-                <div className="grid gap-5 sm:grid-cols-2">
+              <div className="card p-4 sm:p-6 space-y-4 fade-up-1">
+                <div className="grid gap-3 sm:grid-cols-2">
                   <Field label="Full Name *" error={s1Err.name}>
                     <input className="input-field" placeholder="Your full name"
                       value={s1.name} onChange={(e) => setF1("name", e.target.value)} />
@@ -381,20 +381,20 @@ export default function CollegePredictorPage() {
         {/* ── STEP 2 ── */}
         {step === 2 && (
           <>
-            <div className="mb-6 text-center fade-up">
-              <h2 className="headline text-3xl font-black text-[#0a2844] sm:text-4xl">
+            <div className="mb-4 text-center fade-up">
+              <h2 className="headline text-2xl font-black text-[#0a2844] sm:text-3xl">
                 Hi {s1.name.split(" ")[0]}! 👋
               </h2>
-              <p className="mt-2 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-slate-500">
                 Fill in your details and we'll build your personalised college list.
               </p>
             </div>
             <form onSubmit={handleStep2} noValidate>
-              <div className="card p-6 sm:p-8 space-y-6 fade-up-1">
+              <div className="card p-4 sm:p-6 space-y-4 fade-up-1">
 
                 {/* NEET Score */}
                 <SectionTitle>NEET Score &amp; Course</SectionTitle>
-                <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid gap-3 sm:grid-cols-2">
                   <Field label="Estimated NEET Score * (1 – 720)" error={s2Err.estimatedRank}>
                     <input className="input-field" type="number" min={1} max={720} placeholder="e.g. 550"
                       value={s2.estimatedRank} onChange={(e) => setF2("estimatedRank", e.target.value)} />
@@ -410,7 +410,7 @@ export default function CollegePredictorPage() {
 
                 {/* Domicile & Education */}
                 <SectionTitle>Domicile &amp; Education State</SectionTitle>
-                <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid gap-3 sm:grid-cols-2">
                   <Field label="Home / Domicile State *" hint="State of permanent residence" error={s2Err.domicileState}>
                     <select className="input-field" value={s2.domicileState}
                       onChange={(e) => setF2("domicileState", e.target.value)}>
@@ -429,7 +429,7 @@ export default function CollegePredictorPage() {
 
                 {/* Category */}
                 <SectionTitle>Category</SectionTitle>
-                <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid gap-3 sm:grid-cols-2">
                   <Field label="State Quota Category *" hint="e.g. General, OBC, SC, ST, EWS, PWD" error={s2Err.domicileCategory}>
                     <input className="input-field" placeholder="Type your category"
                       value={s2.domicileCategory} onChange={(e) => setF2("domicileCategory", e.target.value)} />
@@ -446,10 +446,10 @@ export default function CollegePredictorPage() {
                 {/* Budget */}
                 <SectionTitle>Budget</SectionTitle>
                 <Field label="Annual Fee Budget *" error={s2Err.budget}>
-                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                  <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3">
                     {BUDGETS.map((b) => (
                       <button key={b} type="button" onClick={() => setF2("budget", b)}
-                        className={`rounded-xl border px-3 py-2.5 text-xs font-semibold text-left transition-all ${
+                        className={`rounded-xl border px-2.5 py-2 text-xs font-semibold text-left transition-all ${
                           s2.budget === b
                             ? "border-[#f26430] bg-[#fff4e7] text-[#e0481a]"
                             : "border-[#123d63]/15 bg-white/60 text-slate-600 hover:border-[#f26430]/50"}`}>
@@ -465,14 +465,14 @@ export default function CollegePredictorPage() {
                 {s2Err.preferredStates && (
                   <p className="text-xs text-red-600 -mt-2">{s2Err.preferredStates}</p>
                 )}
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid gap-3 sm:grid-cols-2">
                   {REGIONS.map((region) => (
                     <div key={region.label}
-                      className="rounded-2xl border border-[#123d63]/10 bg-white/60 p-4">
-                      <p className="mb-3 text-[0.65rem] font-black uppercase tracking-[.2em] text-[#123d63] flex items-center gap-1.5">
+                      className="rounded-2xl border border-[#123d63]/10 bg-white/60 p-3">
+                      <p className="mb-2 text-[0.6rem] font-black uppercase tracking-[.2em] text-[#123d63] flex items-center gap-1">
                         <span>{region.emoji}</span> {region.label}
                       </p>
-                      <div className="flex flex-wrap gap-1.5">
+                      <div className="flex flex-wrap gap-1">
                         {region.states.map((st) => (
                           <button key={st} type="button" onClick={() => toggleState(st)}
                             className={`rounded-full border px-2.5 py-1 text-[0.68rem] font-semibold transition-all ${
