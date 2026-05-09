@@ -501,6 +501,21 @@ export default function CollegePredictorPage() {
       </section>
 
       <Footer />
+
+      {/* ══ Floating WhatsApp Button ══ */}
+      <a
+        href={`https://wa.me/919311483555?text=${encodeURIComponent("Hi TAB India! 👋 I'm looking for guidance on MBBS admission — India or abroad. Please help me with college counselling.")}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+        className="fixed bottom-6 right-5 z-50 flex items-center gap-2.5 rounded-full shadow-2xl px-4 py-3 text-white text-sm font-bold transition-transform hover:scale-105 active:scale-95"
+        style={{ background: "linear-gradient(135deg,#25d366 0%,#1ebe5d 100%)" }}>
+        {/* WhatsApp icon */}
+        <svg viewBox="0 0 32 32" className="h-5 w-5 shrink-0 fill-white" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16.003 2.667C8.637 2.667 2.667 8.637 2.667 16c0 2.352.638 4.553 1.749 6.455L2.667 29.333l7.11-1.718A13.29 13.29 0 0 0 16.003 29.333c7.363 0 13.33-5.97 13.33-13.333 0-7.363-5.967-13.333-13.33-13.333zm0 24.267a11.012 11.012 0 0 1-5.617-1.537l-.403-.24-4.22 1.02 1.055-4.105-.264-.42A10.95 10.95 0 0 1 5.0 16c0-6.07 4.933-11.003 11.003-11.003S27.003 9.93 27.003 16c0 6.07-4.93 11.003-11 11.003v-.07zm6.03-8.23c-.33-.165-1.953-.963-2.256-1.073-.304-.11-.524-.165-.745.165s-.855 1.073-1.048 1.293c-.193.22-.386.248-.716.083-.33-.165-1.393-.513-2.654-1.636-.98-.873-1.64-1.95-1.833-2.28-.193-.33-.02-.508.145-.672.15-.148.33-.386.496-.58.165-.193.22-.33.33-.55.11-.22.055-.413-.027-.58-.083-.165-.745-1.794-1.02-2.456-.27-.645-.543-.557-.745-.568l-.635-.01c-.22 0-.58.083-.882.413-.304.33-1.158 1.132-1.158 2.76 0 1.628 1.186 3.2 1.35 3.42.166.22 2.334 3.565 5.656 4.998.79.34 1.407.543 1.888.695.793.252 1.515.216 2.086.13.637-.095 1.953-.798 2.228-1.57.276-.77.276-1.43.193-1.57-.082-.138-.303-.22-.633-.386z"/>
+        </svg>
+        <span className="hidden sm:inline">Chat on WhatsApp</span>
+      </a>
     </div>
   );
 }
