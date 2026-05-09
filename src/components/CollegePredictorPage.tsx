@@ -176,7 +176,7 @@ export default function CollegePredictorPage() {
 
     setLoading(true);
     post({ type: "college-lead", name: s1.name.trim(), phone: s1.phone.trim(), submittedAt: new Date().toISOString() });
-    await new Promise((r) => setTimeout(r, 400)); // brief pause for UX
+    await new Promise((r) => setTimeout(r, 400));
     setLoading(false);
     setStep(2);
     setTimeout(() => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
@@ -284,7 +284,7 @@ export default function CollegePredictorPage() {
             <span className="text-[#ffb06d]"> College</span>
           </h1>
           <p className="mt-4 text-base leading-7 text-slate-300 sm:text-lg max-w-xl mx-auto">
-            Enter your NEET score, domicile &amp; preferences — our experts will
+            Enter your estimated NEET score, domicile &amp; preferences — our experts will
             match you with the right colleges across state &amp; central quotas.
           </p>
 
