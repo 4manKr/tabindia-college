@@ -7,7 +7,7 @@ const WEBHOOK = import.meta.env.VITE_SHEETS_URL as string | undefined;
 const CENTRAL_CATEGORIES = ["General / UR", "OBC-NCL", "SC", "ST", "EWS", "PWD / PH"];
 
 /* ─── courses ─── */
-const COURSES = ["MBBS", "BDS", "BAMS", "BHMS", "BUMS", "BVSc", "B.Sc Nursing", "Other"];
+const COURSES = ["MBBS", "MBBS Abroad", "BDS", "BAMS", "BHMS", "BUMS", "BVSc", "B.Sc Nursing", "Other"];
 
 /* ─── budget options ─── */
 const BUDGETS = [
@@ -281,11 +281,11 @@ export default function CollegePredictorPage() {
           <h1 className="headline text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
             Find Your Best-Fit
             <br className="hidden sm:block" />
-            <span className="text-[#ffb06d]"> College</span>
+            <span className="text-[#ffb06d]"> College — India &amp; Abroad</span>
           </h1>
           <p className="mt-4 text-base leading-7 text-slate-300 sm:text-lg max-w-xl mx-auto">
             Enter your estimated NEET score, domicile &amp; preferences — our experts will
-            match you with the right colleges across state &amp; central quotas.
+            match you with the right colleges across state, central quotas &amp; top international universities.
           </p>
 
           {/* ── Inline Step-1 form in hero ── */}
@@ -336,10 +336,11 @@ export default function CollegePredictorPage() {
           )}
         </div>
 
-        <div className="relative mx-auto mt-12 grid max-w-2xl grid-cols-3 gap-4 sm:gap-8 fade-up-1">
+        <div className="relative mx-auto mt-12 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6 fade-up-1">
           {[
-            { v: "2,800+", l: "Colleges" },
+            { v: "2,800+", l: "Colleges in India" },
             { v: "AIQ+State", l: "Quota Coverage" },
+            { v: "40+", l: "Countries Abroad" },
             { v: "Expert", l: "Counselling Support" },
           ].map((s) => (
             <div key={s.l} className="text-center">
@@ -482,11 +483,12 @@ export default function CollegePredictorPage() {
           <h2 className="headline text-center text-3xl font-black sm:text-4xl mb-10 fade-up">
             Why Choose <span className="text-[#ffb06d]">TAB India?</span>
           </h2>
-          <div className="grid gap-6 sm:grid-cols-3 fade-up-1">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 fade-up-1">
             {[
-              { icon: "🎯", title: "Accurate College Matching",  body: "Based on real NEET 2025 data covering 2,800+ colleges across state & central quotas." },
-              { icon: "🧑‍🏫", title: "Expert Counsellors",       body: "Our team guides you through every round of counselling — state & AIQ — so you never miss a seat." },
-              { icon: "🤝", title: "Personalised Guidance",        body: "Get a dedicated one-on-one session with our experts and build a clear MBBS admission strategy." },
+              { icon: "🎯", title: "Accurate College Matching",  body: "Based on real NEET 2025 data covering 2,800+ colleges across state & central quotas in India." },
+              { icon: "🌍", title: "International Admissions",   body: "We assist with MBBS admissions in 40+ countries — Russia, Kazakhstan, Philippines, Georgia & more." },
+              { icon: "🧑‍🏫", title: "Expert Counsellors",       body: "Our team guides you through every round of counselling — state, AIQ & abroad — so you never miss a seat." },
+              { icon: "🤝", title: "Personalised Guidance",      body: "Get a dedicated one-on-one session with our experts and build a clear admission strategy — India or abroad." },
             ].map((f) => (
               <div key={f.title} className="rounded-3xl border border-white/10 p-6" style={{ background:"rgba(255,255,255,0.08)" }}>
                 <p className="text-3xl mb-3">{f.icon}</p>
@@ -529,7 +531,7 @@ function Footer() {
           </div>
           <div>
             <p className="font-bold text-sm">TAB India</p>
-            <p className="text-xs text-slate-400">Expert NEET Counselling</p>
+            <p className="text-xs text-slate-400">NEET Counselling — India &amp; Abroad</p>
           </div>
         </div>
         <div className="text-center text-xs text-slate-400 space-y-1">
