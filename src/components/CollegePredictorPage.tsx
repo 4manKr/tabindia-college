@@ -279,8 +279,10 @@ export default function CollegePredictorPage() {
             TAB India — College Predictor
           </p>
           <h1 className="headline text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
-            Find Your Best-Fit MBBS College
+            Find Your Best-Fit
             <br className="hidden sm:block" />
+            <span className="text-[#ffb06d]">MBBS College</span>
+            <br />
             <span className="text-[#ffb06d] whitespace-nowrap">— India &amp; Abroad</span>
           </h1>
           <p className="mt-4 text-base leading-7 text-slate-300 sm:text-lg max-w-xl mx-auto">
