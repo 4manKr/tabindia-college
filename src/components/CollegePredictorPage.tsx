@@ -279,9 +279,9 @@ export default function CollegePredictorPage() {
             TAB India — College Predictor
           </p>
           <h1 className="headline text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
-            Crack NEET. Now Secure
+            Find Your Best-Fit
             <br className="hidden sm:block" />
-            <span className="text-[#ffb06d]"> Your MBBS Seat.</span>
+            <span className="text-[#ffb06d]"> MBBS College — India &amp; Abroad</span>
           </h1>
           <p className="mt-4 text-base leading-7 text-slate-300 sm:text-lg max-w-xl mx-auto">
             Enter your estimated NEET score, domicile &amp; preferences — our experts will
